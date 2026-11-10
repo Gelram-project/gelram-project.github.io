@@ -1,16 +1,111 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEL RAM</title>
-<link rel="canonical" href="https://gel-ram.pages.dev/">
-<meta http-equiv="refresh" content="0; url=https://gel-ram.pages.dev/">
-<script>location.replace("https://gel-ram.pages.dev" + location.pathname + location.search + location.hash);</script>
-<style>body{font:16px/1.5 system-ui,sans-serif;margin:3rem auto;max-width:36rem;padding:0 1rem;color:#1f2328;background:#fff}@media (prefers-color-scheme:dark){body{color:#e6edf3;background:#0d1117}a{color:#79c0ff}}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEL RAM | Reproducible Rust Research on Q8 Memory Records</title>
+  <meta name="description" content="GEL RAM is a Rust research project exploring fixed Q8 memory records, exact four-view read-back, tamper rejection and process-kill recovery. Explore public code, limits and reproducible tests.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://gelram-project.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GEL RAM | Reproducible Rust Memory Research">
+  <meta property="og:description" content="Public Rust experiments in Q8 memory records, byte-exact read-back, integrity checks and crash-consistent persistence. Research claims and limits are explicit.">
+  <meta property="og:url" content="https://gelram-project.github.io/">
+  <meta property="og:site_name" content="GEL RAM">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0e1729">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="GEL RAM agent-readable project overview">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "GEL RAM",
+    "alternateName": "Gelram",
+    "description": "Source-available Rust research project investigating fixed Q8 memory records with four exact coordinate views, public integrity controls and process-kill recovery tests. Conversational Polish and English AI and hardware-level memory computation remain research goals.",
+    "codeRepository": "https://github.com/Gelram-project/gel-ram",
+    "url": "https://gelram-project.github.io/",
+    "programmingLanguage": "Rust",
+    "license": "https://github.com/Gelram-project/gel-ram/blob/main/LICENSE",
+    "keywords": ["Rust", "Q8 quantization", "memory research", "reproducible research", "integrity testing", "crash consistency", "GEL RAM"]
+  }
+  </script>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#162238;--text:#edf3fd;--muted:#a4b4c9;--accent:#78d9c3;--line:#30415b}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--accent);text-underline-offset:.18em}
+    a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    header,main,footer{width:min(960px,calc(100% - 40px));margin:auto}
+    header{padding:32px 0 18px;border-bottom:1px solid var(--line)}
+    nav{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    nav strong{font-size:1.18rem;letter-spacing:.08em;margin-right:auto}
+    nav a{text-decoration:none}
+    h1{font-size:clamp(2.4rem,6vw,4.3rem);line-height:1.08;letter-spacing:-.045em;margin:58px 0 22px}
+    h2{font-size:1.55rem;line-height:1.3;margin:0 0 14px}
+    p{margin:0 0 16px}
+    .intro{font-size:1.2rem;max-width:790px}
+    .quiet,.note{color:var(--muted)}
+    .tag{color:var(--accent);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+    .links{display:flex;gap:16px;flex-wrap:wrap;margin:26px 0 56px}
+    .link{display:inline-block;background:var(--accent);color:#092025;font-weight:750;text-decoration:none;padding:11px 18px;border-radius:10px}
+    .link.secondary{background:transparent;color:var(--accent);border:1px solid var(--line)}
+    section{padding:32px 0;border-top:1px solid var(--line)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+    .card h3{margin:0 0 8px;font-size:1rem}
+    .card p{font-size:.93rem;color:var(--muted);margin:0}
+    pre{padding:18px;overflow-x:auto;border-radius:12px;border:1px solid var(--line);background:#08101c;color:#c5ffe9;font-size:.82rem;line-height:1.65}
+    footer{color:var(--muted);padding:28px 0 48px;border-top:1px solid var(--line)}
+    @media(max-width:680px){.grid{grid-template-columns:1fr}header{padding-top:20px}.links{margin-bottom:32px}}
+  </style>
 </head>
 <body>
-<p>The GEL RAM project site is at <a href="https://gel-ram.pages.dev/">gel-ram.pages.dev</a>.</p>
-<p>Source code: <a href="https://github.com/Gelram-project/gel-ram">github.com/Gelram-project/gel-ram</a>.</p>
+  <header>
+    <nav aria-label="Main navigation">
+      <strong>GEL RAM</strong>
+      <a href="#evidence">Evidence</a>
+      <a href="#reproduce">Reproduce</a>
+      <a href="#polski">Po polsku</a>
+      <a href="https://github.com/Gelram-project/gel-ram">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="tag" style="margin-top:45px">Rust · memory research · reproducible evidence</p>
+    <h1>GEL RAM</h1>
+    <p class="intro">Research into knowledge represented as fixed Q8 records in memory, with exact read-back, source integrity and reproducible public tests.</p>
+    <p class="quiet">The public repository demonstrates bounded byte-level and persistence properties. A free-form Polish/English text AI and hardware-level memory computation are goals, <strong>not established results</strong>. The public repository does not include the private implementation or knowledge bank.</p>
+    <div class="links">
+      <a class="link" href="https://github.com/Gelram-project/gel-ram">Explore the Rust source</a>
+      <a class="link secondary" href="https://gel-ram.pages.dev/">Visit the full project website</a>
+    </div>
+    <section id="evidence">
+      <h2>What the public code tests</h2>
+      <div class="grid">
+        <div class="card"><h3>One record, four views</h3><p>A 1,152-byte Q8 record: 1,024 phase bytes and a 128-byte activity mask. Four reversible views read the same record exactly; they are not four independent memories.</p></div>
+        <div class="card"><h3>Exactness and integrity</h3><p>Literal bytes are read back through all views; modified data is refused under an independently held SHA-256 pin. This does not verify the truth of source content.</p></div>
+        <div class="card"><h3>Process-kill recovery</h3><p>Public test runners interrupt writing processes and check acknowledged state and recovery. This is not a physical power-loss guarantee.</p></div>
+      </div>
+      <p class="note" style="margin-top:18px">Read the <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md">claim registry</a>, <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/VERIFIED-RESULTS.md">public evidence</a> and <a href="https://github.com/Gelram-project/gel-ram/blob/main/LICENSE">noncommercial source-available license</a> before interpreting any performance claim.</p>
+    </section>
+    <section id="reproduce">
+      <h2>Reproduce the public checks</h2>
+      <p>The public project provides a versioned Rust toolchain and an offline witness runner. Install Git and rustup, then run:</p>
+      <pre><code>git clone https://github.com/Gelram-project/gel-ram.git
+cd gel-ram
+git checkout v0.9.0
+rustup toolchain install 1.85.0 --profile minimal
+cargo fetch --locked
+cargo run --locked --offline -p xtask -- witness ../gel-check</code></pre>
+      <p class="note">Use a new output directory outside the checkout. Share the resulting WITNESS.txt only after reviewing its contents. A second machine's results can be submitted to <a href="https://github.com/Gelram-project/gel-ram/issues/20">independent reproduction issue #20</a>. Follow the <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CHECK-ON-YOUR-HARDWARE.md">full witness guide</a>.</p>
+    </section>
+    <section id="polski" lang="pl">
+      <h2>GEL RAM po polsku</h2>
+      <p>GEL RAM to eksperymentalny projekt badawczy w języku Rust. Bada przechowywanie informacji w rekordach Q8, odczyt bitowo zgodny przez cztery widoki, kontrolę integralności oraz odtwarzanie stanu po przerwaniu procesu.</p>
+      <p>Publiczne testy dotyczą jasno ograniczonych właściwości. Swobodna dwujęzyczna sztuczna inteligencja oraz obliczenia bezpośrednio w pamięci sprzętowej są celami badawczymi, a nie potwierdzonymi rezultatami. <a href="https://github.com/Gelram-project/gel-ram">Kod i dokumentacja GEL RAM</a> są dostępne na GitHubie na warunkach licencji niekomercyjnej.</p>
+    </section>
+  </main>
+  <footer>GEL RAM research project · <a href="https://github.com/Gelram-project/gel-ram">Source repository</a> · <a href="https://gel-ram.pages.dev/">Full project site</a> · <a href="/llms.txt">Agent-readable overview</a></footer>
 </body>
 </html>
