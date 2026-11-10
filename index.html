@@ -62,6 +62,13 @@
     pre{padding:18px;overflow-x:auto;border-radius:12px;border:1px solid var(--line);background:#08101c;color:#c5ffe9;font-size:.82rem;line-height:1.65}
     footer{color:var(--muted);padding:28px 0 48px;border-top:1px solid var(--line)}
     @media(max-width:680px){.grid{grid-template-columns:1fr}header{padding-top:20px}.links{margin-bottom:32px}}
+
+    .promo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
+    .promo-grid a{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);text-decoration:none}
+    .promo-grid img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover}
+    .promo-grid span{display:block;padding:10px 12px;font-size:.87rem;font-weight:650}
+    .promo-grid a:hover{border-color:var(--accent)}
+    @media(max-width:680px){.promo-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.promo-grid span{font-size:.66rem;padding:8px 5px}}
   </style>
 </head>
 <body>
@@ -84,6 +91,15 @@
       <a class="link" href="https://github.com/Gelram-project/gel-ram">Explore the Rust source</a>
       <a class="link secondary" href="https://gel-ram.pages.dev/">Visit the full project website</a>
     </div>
+    <section id="gallery">
+      <h2>Explore GEL RAM</h2>
+      <p>Click a project graphic to open the full GEL RAM website. These graphics are illustrative; they do not depict an experimentally verified physical Q8 device.</p>
+      <div class="promo-grid">
+        <a href="https://gel-ram.pages.dev/" aria-label="Open full GEL RAM website from Q8 record graphic"><img loading="lazy" src="/social/gelram-tiktok-01.png" alt="Illustrated project graphic: one Q8 record and four exact views" width="720" height="1280"><span>Q8 record research</span></a>
+        <a href="https://gel-ram.pages.dev/" aria-label="Open full GEL RAM website from integrity graphic"><img loading="lazy" src="/social/gelram-tiktok-02.png" alt="Illustrated project graphic: integrity and process kill recovery checks" width="720" height="1280"><span>Integrity evidence</span></a>
+        <a href="https://gel-ram.pages.dev/" aria-label="Open full GEL RAM website from public source graphic"><img loading="lazy" src="/social/gelram-tiktok-03.png" alt="Illustrated project graphic: public Rust tests and reproduction" width="720" height="1280"><span>Reproduce the tests</span></a>
+      </div>
+    </section>
     <section id="evidence">
       <h2>What the public code tests</h2>
       <div class="grid">
