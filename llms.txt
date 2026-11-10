@@ -4,6 +4,8 @@
 
 ## Canonical resources
 
+- [GEL RAM research questions and answers](https://gelram-project.github.io/research.html)
+
 - [Public Rust source and README](https://github.com/Gelram-project/gel-ram)
 - [Full project site](https://gel-ram.pages.dev/)
 - [Claim and counterexample registry](https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md)
