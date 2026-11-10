@@ -12,8 +12,10 @@
   <meta property="og:description" content="Public Rust experiments in Q8 memory records, byte-exact read-back, integrity checks and crash-consistent persistence. Research claims and limits are explicit.">
   <meta property="og:url" content="https://gelram-project.github.io/">
   <meta property="og:site_name" content="GEL RAM">
+  <meta property="og:image" content="https://gelram-project.github.io/social/gelram-tiktok-01.png">
   <meta property="og:locale" content="en_GB">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://gelram-project.github.io/social/gelram-tiktok-01.png">
   <meta name="theme-color" content="#0e1729">
   <link rel="alternate" type="text/plain" href="/llms.txt" title="GEL RAM agent-readable project overview">
   <script type="application/ld+json">
@@ -26,6 +28,7 @@
     "codeRepository": "https://github.com/Gelram-project/gel-ram",
     "url": "https://gelram-project.github.io/",
     "programmingLanguage": "Rust",
+    "sameAs": ["https://gel-ram.pages.dev/","https://github.com/Gelram-project/gel-ram","https://www.tiktok.com/@gelram.project"],
     "license": "https://github.com/Gelram-project/gel-ram/blob/main/LICENSE",
     "keywords": ["Rust", "Q8 quantization", "memory research", "reproducible research", "integrity testing", "crash consistency", "GEL RAM"]
   }
@@ -67,6 +70,7 @@
       <strong>GEL RAM</strong>
       <a href="#evidence">Evidence</a>
       <a href="#reproduce">Reproduce</a>
+      <a href="/research.html">FAQ</a>
       <a href="#polski">Po polsku</a>
       <a href="https://github.com/Gelram-project/gel-ram">GitHub</a>
     </nav>
@@ -87,7 +91,7 @@
         <div class="card"><h3>Exactness and integrity</h3><p>Literal bytes are read back through all views; modified data is refused under an independently held SHA-256 pin. This does not verify the truth of source content.</p></div>
         <div class="card"><h3>Process-kill recovery</h3><p>Public test runners interrupt writing processes and check acknowledged state and recovery. This is not a physical power-loss guarantee.</p></div>
       </div>
-      <p class="note" style="margin-top:18px">Read the <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md">claim registry</a>, <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/VERIFIED-RESULTS.md">public evidence</a> and <a href="https://github.com/Gelram-project/gel-ram/blob/main/LICENSE">noncommercial source-available license</a> before interpreting any performance claim.</p>
+      <p class="note" style="margin-top:18px">Read the <a href="/research.html">project research FAQ</a>, the <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md">claim registry</a>, <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/VERIFIED-RESULTS.md">public evidence</a> and <a href="https://github.com/Gelram-project/gel-ram/blob/main/LICENSE">noncommercial source-available license</a> before interpreting any performance claim.</p>
     </section>
     <section id="reproduce">
       <h2>Reproduce the public checks</h2>
@@ -106,6 +110,6 @@ cargo run --locked --offline -p xtask -- witness ../gel-check</code></pre>
       <p>Publiczne testy dotyczą jasno ograniczonych właściwości. Swobodna dwujęzyczna sztuczna inteligencja oraz obliczenia bezpośrednio w pamięci sprzętowej są celami badawczymi, a nie potwierdzonymi rezultatami. <a href="https://github.com/Gelram-project/gel-ram">Kod i dokumentacja GEL RAM</a> są dostępne na GitHubie na warunkach licencji niekomercyjnej.</p>
     </section>
   </main>
-  <footer>GEL RAM research project · <a href="https://github.com/Gelram-project/gel-ram">Source repository</a> · <a href="https://gel-ram.pages.dev/">Full project site</a> · <a href="/llms.txt">Agent-readable overview</a></footer>
+  <footer>GEL RAM research project · <a href="https://github.com/Gelram-project/gel-ram">Source repository</a> · <a href="https://gel-ram.pages.dev/">Full project site</a> · <a href="/research.html">Research FAQ</a> · <a href="https://www.tiktok.com/@gelram.project">TikTok</a> · <a href="/llms.txt">Agent-readable overview</a></footer>
 </body>
 </html>
