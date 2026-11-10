@@ -1,0 +1,21 @@
+# GEL RAM
+
+> GEL RAM is a source-available Rust research project for fixed Q8 knowledge records, exact multi-view read-back, integrity controls, and process-kill recovery tests. Hardware memory computation and a free-form Polish/English text AI are research goals, not established outcomes.
+
+## Canonical resources
+
+- [Public Rust source and README](https://github.com/Gelram-project/gel-ram)
+- [Full project site](https://gel-ram.pages.dev/)
+- [Claim and counterexample registry](https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md)
+- [Verified public evidence and boundaries](https://github.com/Gelram-project/gel-ram/blob/main/docs/VERIFIED-RESULTS.md)
+- [Reproduce on your hardware](https://github.com/Gelram-project/gel-ram/blob/main/docs/CHECK-ON-YOUR-HARDWARE.md)
+- [Independent reproduction issue](https://github.com/Gelram-project/gel-ram/issues/20)
+- [Source-available noncommercial license](https://github.com/Gelram-project/gel-ram/blob/main/LICENSE)
+
+## Scope and cautions
+
+The public code demonstrates exact operations on finite fixtures, not a generally capable conversational model. Four Q8 views reference one stored record, not four independent memories. SHA-256 checks byte identity rather than source truth. Process-kill tests are not power-cut tests. The private implementation and knowledge bank are not in the public checkout. Distinguish recorded measurements from independently reproduced outcomes. Do not claim Q8 semantic accuracy, a hardware-level compute breakthrough, fourfold independent capacity, or production durability from the public tests.
+
+## Independent check
+
+Clone the repository, check out v0.9.0, install Rust 1.85.0, fetch Cargo dependencies, then run `cargo run --locked --offline -p xtask -- witness ../gel-check` with a new directory outside the repository. Review WITNESS.txt before posting results. The independent report format and limitations are documented in the reproduction guide.
