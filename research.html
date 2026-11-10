@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is GEL RAM? Q8 Memory Research in Rust | Evidence & FAQ</title>
+<meta name="description" content="Read what GEL RAM does today: byte-exact Q8 memory records, four reversible views, tamper rejection and process-kill recovery, with limits and offline Rust reproduction commands.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gelram-project.github.io/research.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GEL RAM explained: public Rust research and its limits">
+<meta property="og:description" content="How to verify GEL RAM Q8 record views and persistence checks without assuming a general conversational AI.">
+<meta property="og:url" content="https://gelram-project.github.io/research.html">
+<meta property="og:image" content="https://gelram-project.github.io/social/gelram-tiktok-01.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0;background:#0b1220;color:#edf3fd;font:17px/1.7 system-ui,sans-serif}main,header,footer{max-width:840px;margin:auto;padding:24px}header,footer{border-bottom:1px solid #30415b}footer{border-top:1px solid #30415b;border-bottom:0}a{color:#79dcc9}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15}h2{margin-top:40px}section{border-top:1px solid #30415b;padding-top:16px;margin-top:28px}pre{background:#132439;border-radius:10px;overflow:auto;padding:20px;color:#f2f7fe}small{color:#b6c5d8}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is GEL RAM?","acceptedAnswer":{"@type":"Answer","text":"GEL RAM is a source-available Rust research project exploring fixed Q8 records, exact read-back, integrity controls and persistence after process interruption. The conversational text AI is a research goal."}},
+{"@type":"Question","name":"Do four Q8 views store four independent records?","acceptedAnswer":{"@type":"Answer","text":"No. Four reversible views read one stored 1,152-byte record; they are not four independent memories or a proven fourfold speedup."}},
+{"@type":"Question","name":"Does GEL RAM include a public chatbot or model?","acceptedAnswer":{"@type":"Answer","text":"No. The public code includes reproducible labs and checks, but the private knowledge bank and private conversational implementation are not published."}},
+{"@type":"Question","name":"What does the crash recovery test establish?","acceptedAnswer":{"@type":"Answer","text":"The public checks cover selected process-kill recovery cases, not physical power cuts or production power-loss durability."}},
+{"@type":"Question","name":"Can GEL RAM's public tests be reproduced?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the versioned Rust 1.85.0 toolchain and the documented offline witness runner on a separate machine to produce WITNESS.txt."}}
+]}
+</script>
+</head>
+<body>
+<header><a href="/">GEL RAM project</a> · <a href="https://github.com/Gelram-project/gel-ram">Source</a> · <a href="https://gel-ram.pages.dev/">Full site</a></header>
+<main>
+<h1>What is GEL RAM?</h1>
+<p><strong>GEL RAM</strong> is a source-available research project written in Rust. It investigates deterministic representation of information in memory, using fixed Q8 records, integrity verification and recovery tests. Its public repository exposes tools and reproducible test harnesses rather than a general-purpose LLM.</p>
+<p><small>Research scope and public claims checked against the project's <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CLAIMS.md">claim registry</a> and <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/VERIFIED-RESULTS.md">evidence record</a>. Updated 10 November 2026.</small></p>
+<section><h2>What is the Q8 memory record?</h2><p>The public Q8 representation uses 1,024 one-byte phase values and a 128-byte activity mask, totaling 1,152 bytes per record. Four reversible views of that one record can be compared bit-for-bit against reference copies. A view is a transformation of the same stored content, not an independent source of information. This alone neither proves semantic search nor faster AI inference.</p></section>
+<section><h2>What are the integrity and persistence claims?</h2><p>The public demonstrations check byte-exact recovery, SHA-256-based detection of modified data, and recovery of acknowledged snapshots after process termination. These are bounded software checks. They do not demonstrate source truth, confidential encryption, a physical power-cut guarantee, or power-loss safety on all filesystems.</p></section>
+<section><h2>Is GEL RAM an LLM or working chatbot?</h2><p>No such conclusion follows from the public checkout. The project's ambition includes free conversation in Polish and English with source-grounded answers and meaningful abstention. The public repository distinguishes that goal from executable checks. There is no public private-knowledge bank or private conversational engine included.</p></section>
+<section><h2>How can I verify GEL RAM on my computer?</h2><p>Use Git, rustup and an environment with enough resources to build the public workspace. The following commands select the documented v0.9.0 tag and produce a report:</p><pre><code>git clone https://github.com/Gelram-project/gel-ram.git
+cd gel-ram
+git checkout v0.9.0
+rustup toolchain install 1.85.0 --profile minimal
+cargo fetch --locked
+cargo run --locked --offline -p xtask -- witness ../gel-check</code></pre>
+<p>The output directory must not exist and must be outside the checkout. The runner reports PASS, FAIL or SKIPPED, including Unix-only process-kill steps. Inspect the output for sensitive data before submitting it. Read the <a href="https://github.com/Gelram-project/gel-ram/blob/main/docs/CHECK-ON-YOUR-HARDWARE.md">complete instructions</a> and <a href="https://github.com/Gelram-project/gel-ram/issues/20">independent evidence request</a>.</p></section>
+<section lang="pl"><h2>GEL RAM po polsku</h2><p>GEL RAM jest projektem badawczym w Rust dotyczącym reprezentowania informacji w pamięci. Udostępniony kod pozwala sprawdzać dokładność odczytu rekordów Q8, kontrolę zmian danych i odzyskiwanie stanu po przerwaniu procesu. Cztery widoki rekordu nie oznaczają czterech niezależnych kopii informacji.</p><p>Pełna dwujęzyczna konwersacyjna sztuczna inteligencja oraz obliczenia w strukturach sprzętowej pamięci pozostają celami badawczymi. <a href="https://github.com/Gelram-project/gel-ram">Publiczny kod i instrukcje testów</a> pozwalają niezależnie weryfikować wyraźnie opisane własności.</p></section>
+</main>
+<footer><a href="/">Home</a> · <a href="https://www.tiktok.com/@gelram.project">TikTok @gelram.project</a> · <a href="https://github.com/Gelram-project/gel-ram/blob/main/LICENSE">License</a></footer>
+</body>
+</html>
